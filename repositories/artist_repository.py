@@ -4,7 +4,7 @@ from db.run_sql import run_sql
 
 # CREATE
 def save(artist):
-    sql = "INSERT INTO artists (name) VALUES (%s) RETURNING id
+    sql = "INSERT INTO artists (name) VALUES (%s) RETURNING id"
     values = [artist.name]
     results = run_sql(sql, values)
     id = results[0]["id"]
@@ -24,7 +24,7 @@ def select_all():
 
 def select(id):
     artist = None
-    sql = "SELECT * FROM users WHERE id = %s"
+    sql = "SELECT * FROM artists WHERE id = %s"
     values = [id]
     result = run_sql(sql, values)[0]
     if result is not None:
@@ -35,11 +35,11 @@ def select(id):
 #DELETE
 
 def delete_all():
-    sql = "DELETE FROM users"
+    sql = "DELETE FROM artists"
     run_sql(sql)
 
 def delete(id):
-    sql = "DELETE FROM users WHERE id = %s"
+    sql = "DELETE FROM artists WHERE id = %s"
     values = [id]
     run_sql(sql, values)
 
