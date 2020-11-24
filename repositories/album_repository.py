@@ -32,3 +32,15 @@ def select(id):
         artist = artist_repository.select(artist_id)
         album = Album(artist, result['title'], result['genre'])
     return album
+
+
+#DELETE 
+
+def delete_all():
+    sql = "DELETE FROM albums"
+    run_sql(sql)
+
+def delete(id):
+    sql = "DELETE FROM albums WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
