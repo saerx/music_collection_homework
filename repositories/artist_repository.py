@@ -11,7 +11,7 @@ def save(artist):
     artist.id = id
     return artist
 
-  #READ
+#READ
 
 def select_all():
     artists = []
@@ -30,6 +30,13 @@ def select(id):
     if result is not None:
         artist = Artist(result['name'], result['id'])
     return artist
+
+#UPDATE
+
+def update(artist):
+    sql = "UPDATE artists SET ('name') = (%s) WHERE id = %s"
+    values = [artist.title, artist.id]
+    run_sql(sql, values)
 
 
 #DELETE

@@ -3,6 +3,9 @@ from models.album import Album
 from db.run_sql import run_sql
 import repositories.artist_repository as artist_repository
 
+
+#CREATE 
+
 def save(album):
     sql = "INSERT INTO albums (artist_id, title, genre) VALUES (%s, %s, %s) RETURNING id"
     values = [album.artist.id, album.title, album.genre]
@@ -33,6 +36,11 @@ def select(id):
         album = Album(artist, result['title'], result['genre'])
     return album
 
+#UPDATE
+def update(album):
+    sql = "UPDATE albums SET (artist_id, title, genre) = (%s, %s, %s) WHERE id = %s"
+    values = [album.artist.id, album.title, album.genre]
+    run_sql(sql, values)
 
 #DELETE 
 
