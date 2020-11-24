@@ -51,6 +51,24 @@ def delete(id):
     run_sql(sql, values)
 
 
+#OTHER
 
+def get_albums_by_artist(artist):
+    sql = "SELECT * FROM artists WHERE artist_id = %s"
+    values = [artist.id]
+    results = run_sql(sql, values)
+
+    artists_albums = []
+
+    for row_data in results:
+        album = Album(
+            artist,
+            row_data["title"],
+            row_data["genre"],
+            row_data["id"]        
+            )
+        artists_albums.append(album)
+
+    return artists_albums
 
 
